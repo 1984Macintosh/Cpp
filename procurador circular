@@ -1,0 +1,140 @@
+#include <iostream>
+#include <bits/stdc++.h> 
+using namespace std; 
+
+//struct nó 
+struct Node 
+{ 
+	int data; 
+	struct Node *next; 
+	struct Node *prev; 
+}; 
+
+// Função inserir no 
+void insertNode(struct Node** start, int value) 
+{ 
+     // se a lista estiver vazia, cria uma com no unico
+      
+	if (*start == NULL) 
+	{ 
+		struct Node* new_node = new Node; 
+		new_node->data = value; 
+		new_node->next = new_node->prev = new_node; 
+		*start = new_node; 
+		return; 
+	} 
+
+	// se n estiver vazia
+
+	//encontra o ultimo no//
+	Node *last = (*start)->prev; 
+
+	// Cria no dinamicamente
+	struct Node* new_node = new Node; 
+	new_node->data = value; 
+
+	// Start é onde vai ser o proximo no
+	new_node->next = *start; 
+
+	// new_node é o anterior ao start 
+	(*start)->prev = new_node; 
+
+	
+	new_node->prev = last; 
+
+	
+	last->next = new_node; 
+} 
+
+// Função para mostrar o a lista
+ 
+void displayList(struct Node* start) 
+{ 
+	struct Node *temp = start; 
+
+	while (temp->next != start) 
+	{ 
+	    cout << temp->data << " "; 
+		temp = temp->next; 
+	} 
+	cout << temp->data; 
+} 
+
+// Funçao para achar o elemento
+int searchList(struct Node* start, int search) 
+{  
+	struct Node *temp = start; 
+	
+	int count=0,flag=0,value; 
+	
+	// se start é nulo = return -1 
+	if(temp == NULL) 
+		return -1; 
+	else
+	{ 
+		// Move o ponteiro ate, 
+		// temp->next não se mover 
+		while(temp->next != start) 
+		{ 
+			// Incrementa o contador para a localizaçao
+			count++; 
+			// Se for encontrado, quebra o loop
+			if(temp->data == search) 
+			{ 
+				flag = 1; 
+				count--; 
+				break; 
+			} 
+			// Incrementa ponteiro do temp 
+			temp = temp->next; 
+		} 
+		// Checa se o ultimo elemento da lista 
+		// contem o valor, se contem, 
+		// levanta bandeira e incrementa contagem 
+		if(temp->data == search) 
+		{ 
+			count++; 
+			flag = 1; 
+		} 
+		
+		// se a bandeira for verdadeira (sentinela) elemento
+		// encontrado, caso contrario não 
+		if(flag == 1) 
+			cout<<"\n"<<search <<" encontrado na posicao "<< 
+											count<<endl; 
+		else
+			cout<<"\n"<<search <<" nao encontrado"<<endl; 
+	} 
+} 
+
+// Driver code 
+int main() 
+{ 
+	/* lista comeca vazia */
+	struct Node* start = NULL; 
+
+	// Insert 4.  4->NULL 
+	insertNode(&start, 4); 
+
+	// Insert 5.  4->5 
+	insertNode(&start, 5); 
+
+	// Insert 7.  
+	//  4->5->7 
+	insertNode(&start, 7); 
+
+	// Insert 8. 
+	// 4->5->7->8 
+	insertNode(&start, 8); 
+
+	// Insert 6.  
+	//  4->5->7->8->6 
+	insertNode(&start, 6); 
+
+	printf("A lista circular criada foi: "); 
+	displayList(start); 
+	
+	searchList(start, 5); 
+
+	return 0; 
+} 

@@ -1,0 +1,91 @@
+#include <iostream>
+#include <list>
+#include <fstream>
+#include <windows.h>
+using namespace std;
+
+int main(){
+	
+	HANDLE h = GetStdHandle( STD_OUTPUT_HANDLE ); 
+	
+	list <int> func;
+	list <int> funclow;
+	list <int> funcok;
+	list <string> op;
+	
+	list <int> :: iterator it;
+	list <int> :: iterator it2;
+	list <int> :: iterator it3;
+	list <string> :: iterator ito;
+	
+	
+	func.push_back(3);
+	func.push_back(4);
+	func.push_back(6);
+	func.push_back(7);
+	func.push_back(10);
+	
+	op.push_back("Claudia");
+	op.push_back("Alice");
+	op.push_back("Paulo");
+	op.push_back("Joao");
+	op.push_back("Lucio");
+	
+	
+	it = func.begin();
+	
+	cout << " |||||||||||  R E N D I M E N T O   D O S  F U N C I O N A R I O S.\n\n\n";
+	
+	for(it; it != func.end(); it++){
+		
+		if(*it >= 6){
+			funcok.push_back(*it);
+		}
+		else
+		funclow.push_back(*it);
+	}
+	
+	//it = func.begin(); it != func.end();it++
+	//ito = op.begin();ito != op.end(); ito++
+	
+	
+	for(it = func.begin(),ito = op.begin() ; it != func.end(),ito != op.end();it++,ito++){
+		cout << "O funcionario " << *ito << " teve rendimento de nota " << *it << " .\n";
+    }
+    
+    SetConsoleTextAttribute( h, 4 );  
+    cout << "\nRendimento abaixo da media: " << endl;
+	for(it3 = funclow.begin(); it3 != funclow.end();it3++){
+	cout << *it3;
+    }
+    
+    SetConsoleTextAttribute( h, 1 );
+    cout << "\nRendimento acima da media: " << endl;
+	for(it2 = funcok.begin(); it2 != funcok.end();it2++){
+	cout << *it2;
+    }
+	
+	SetConsoleTextAttribute( h, 7 );
+	
+	ofstream melhores("best_func.txt",ofstream :: app);
+	if(melhores.is_open()){
+		melhores << "Funcionarios com rendiento acima da media: " << endl;
+		for(it2 = funcok.begin(); it2 != funcok.end();it2++){
+	    melhores << *it2;
+    }
+    melhores.close();
+    cout << "\n\nLista gravada !";
+	}
+	
+	ofstream abaixo("low_func.txt",ofstream :: app);
+	if(abaixo.is_open()){
+		abaixo << "Funcionarios com rendiento abaixo da media: " << endl;
+		for(it3 = funclow.begin(); it3 != funclow.end();it3++){
+	    abaixo << *it3;
+    }
+    abaixo.close();
+    cout << "\n\nLista gravada (enviar para RH) !";
+	}
+	
+	return 0;
+}

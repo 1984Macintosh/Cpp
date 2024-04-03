@@ -1,0 +1,59 @@
+Nome : Carlos Alberto.
+Diretoria : Projetos.
+Especialidade : Desenvolvedor Web.
+
+
+Nome : Alice Costa.
+Diretoria : Projetos.
+Especialidade : Pentester.
+
+
+Nome : Lucia Barros.
+Diretoria : Projetos.
+Especialidade : Gerenciamento de Rede Wi-Fi.
+
+
+Nome : Mathias Ribeiro.
+Diretoria : Comercial.
+Especialidade : Prospecção.
+
+
+Nome : Nathalia Andrade.
+Diretoria : Comercial.
+Especialidade : SDRs " Sales Development Representatives ".
+
+
+Nome : Gabriel Barbosa
+Diretoria : Comercial
+Especialidade : Closer
+
+
+Nome : Matheus Borges.
+Diretoria : Recursos Humanos.
+Especialidade : Automação de Projetos
+
+
+Nome : Marilia Campos.
+Diretoria : Recursos Humanos.
+Especialidade : Recrutamento e Selecao de Profissionais.
+
+
+Nome : Gabriela Cardoso.
+Diretoria : Recursos Humanos.
+Especialidade : Gamificacao " Engajar pessoas na busca de um objetivo ".
+
+
+Nome : Beatriz Castro.
+Diretoria : Marketing.
+Especialidade : Marketing Virtual.
+
+
+Nome : Julia Duarte.
+Diretoria : Marketing.
+Especialidade : Desing Grafico.
+
+
+Nome : Juliana Freitas.
+Diretoria : Marketing.
+Especialidade : Marketing Estratégico.
+

@@ -1,0 +1,100 @@
+// Implementacao em C++ de procura e inserção
+// numa arvore
+#include <iostream>
+#include <bits/stdc++.h> 
+using namespace std; 
+
+const int ALPHABET_SIZE = 26; 
+
+// no arvore 
+struct TrieNode 
+{ 
+	struct TrieNode *filhos[ALPHABET_SIZE]; 
+
+	// FimPalavra é verdadeiro se o no
+	// representa o fim de uma palabra
+	bool FimPalavra; 
+}; 
+
+// retorna um novo no (inicia nulo) 
+struct TrieNode *getNode(void) 
+{ 
+	struct TrieNode *pNode = new TrieNode; 
+
+	pNode->FimPalavra = false; 
+
+	for (int i = 0; i < ALPHABET_SIZE; i++) 
+		pNode->filhos[i] = NULL; 
+
+	return pNode; 
+} 
+
+// If not present, inserts key into trie 
+// If the key is prefix of trie node, just 
+// marks leaf node 
+void insert(struct TrieNode *root, string key) 
+{ 
+	struct TrieNode *pCrawl = root; 
+
+	for (int i = 0; i < key.length(); i++) 
+	{ 
+		int index = key[i] - 'a'; 
+		if (!pCrawl->filhos[index]) 
+			pCrawl->filhos[index] = getNode(); 
+
+		pCrawl = pCrawl->filhos[index]; 
+	} 
+
+	// marca o ultimo nó como folha
+	pCrawl->FimPalavra = true; 
+} 
+
+// Retorna verdadeiro se a palavra esta na arvore
+// falso se n estiver
+bool search(struct TrieNode *root, string key) 
+{ 
+	struct TrieNode *pCrawl = root; 
+
+	for (int i = 0; i < key.length(); i++) 
+	{ 
+		int index = key[i] - 'a'; 
+		if (!pCrawl->filhos[index]) 
+			return false; 
+
+		pCrawl = pCrawl->filhos[index]; 
+	} 
+
+	return (pCrawl != NULL && pCrawl->FimPalavra); 
+} 
+
+// main
+int main() 
+{ 
+	// nomes que fazem parte da empresa
+	// (somente de a ate z e minusculo)
+	string keys[] = {"isso", "eh", "somente", 
+					"um", "teste", "no", 
+					"programa", "final" }; 
+	int n = sizeof(keys)/sizeof(keys[0]); 
+	string por;
+
+	struct TrieNode *root = getNode(); 
+
+	// Constroi
+	for (int i = 0; i < n; i++) 
+		insert(root, keys[i]); 
+
+	// Procura pelas palavras 
+	search(root, "marcelo")? cout << "Sim\n" : 
+						cout << "Nao\n"; 
+	search(root, "final")? cout << "Sim\n" : 
+						cout << "Nao\n"; 
+	
+	cout << "Digite o que quer procurar: ";
+	cin >> por;
+	search(root,por)?cout << "Sim\n":
+	                 cout << "Nao\n";
+	
+						
+	return 0; 
+} 

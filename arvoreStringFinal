@@ -1,0 +1,170 @@
+// Implementacao em C++ de procura e inserção
+// numa arvore
+#include <iostream>
+#include <bits/stdc++.h> 
+#include <windows.h>
+using namespace std; 
+
+const int ALPHABET_SIZE = 26; 
+
+// no arvore 
+struct TrieNode 
+{ 
+	struct TrieNode *filhos[ALPHABET_SIZE]; 
+
+	// FimPalavra é verdadeiro se o no
+	// representa o fim de uma palabra
+	bool FimPalavra; 
+}; 
+
+// retorna um novo no (inicia nulo) 
+struct TrieNode *getNode(void) 
+{ 
+	struct TrieNode *pNode = new TrieNode; 
+
+	pNode->FimPalavra = false; 
+
+	for (int i = 0; i < ALPHABET_SIZE; i++) 
+		pNode->filhos[i] = NULL; 
+
+	return pNode; 
+} 
+
+// If not present, inserts key into trie 
+// If the key is prefix of trie node, just 
+// marks leaf node 
+void insert(struct TrieNode *root, string key) 
+{ 
+	struct TrieNode *pCrawl = root; 
+
+	for (int i = 0; i < key.length(); i++) 
+	{ 
+		int index = key[i] - 'a'; 
+		if (!pCrawl->filhos[index]) 
+			pCrawl->filhos[index] = getNode(); 
+
+		pCrawl = pCrawl->filhos[index]; 
+	} 
+
+	// marca o ultimo nó como folha
+	pCrawl->FimPalavra = true; 
+} 
+
+// Retorna verdadeiro se a palavra esta na arvore
+// falso se n estiver
+bool search(struct TrieNode *root, string key) 
+{ 
+	struct TrieNode *pCrawl = root; 
+
+	for (int i = 0; i < key.length(); i++) 
+	{ 
+		int index = key[i] - 'a'; 
+		if (!pCrawl->filhos[index]) 
+			return false; 
+
+		pCrawl = pCrawl->filhos[index]; 
+	} 
+
+	return (pCrawl != NULL && pCrawl->FimPalavra); 
+} 
+
+// main
+int main() 
+{ 
+	setlocale (LC_ALL, "Portuguese");
+	HANDLE h = GetStdHandle( STD_OUTPUT_HANDLE );
+	string por;
+	int menu;
+	
+	SetConsoleTextAttribute( h, 5 );
+	cout << "|||| V E R I F I C A D O R   D E   E N T R E G A S ||||" << endl << endl;
+	SetConsoleTextAttribute( h, 7);
+
+	struct TrieNode *root = getNode(); 
+		
+	while(5){
+		
+		cout << " Qual diretoria você quer checar os projetos?" << endl << endl;
+		cout << " 1. Projetos." << endl;
+		cout << " 2. Comercial." << endl;
+		cout << " 3. Recursos Humanos." << endl;
+		cout << " 4. Marketing." << endl;
+		cout << " 5. Sair." << endl;
+		cin >> menu;
+		
+		switch(menu){
+			
+			case 1 :{
+				string projetos[] = {"teste"}; 
+	            int n = sizeof(projetos)/sizeof(projetos[0]); 
+	            
+	            struct TrieNode *root = getNode(); 
+	            
+	            for (int i = 0; i < n; i++) 
+		        insert(root, projetos[i]); 
+		        
+		        cout << "Digite qual projeto quer procurar: ";
+		        cin >> por;
+		        search(root,por)?cout << "Foi entregue !\n"<< endl:
+	                 cout << "Não foi entregue !\n"<< endl;
+	                 system("pause");
+	                 system("CLS");
+				break;
+			}	
+			case 2:{
+				string comercial[] = {"teste1"}; 
+	            int n1 = sizeof(comercial)/sizeof(comercial[0]); 
+	            
+	            struct TrieNode *root1 = getNode(); 
+	            
+	            for (int i = 0; i < n1; i++) 
+		        insert(root, comercial[i]); 
+		        
+		        cout << "Digite qual projeto quer procurar: ";
+		        cin >> por;
+		        search(root,por)?cout << "Foi entregue !\n"<< endl:
+	                 cout << "Não foi entregue !\n"<< endl;
+	                 system("pause");
+	                 system("CLS");
+				break;
+			}
+			case 3:{
+				string rh[] = {"teste2"}; 
+	            int n2 = sizeof(rh)/sizeof(rh[0]); 
+	            
+	            struct TrieNode *root2 = getNode(); 
+	            
+	            for (int i = 0; i < n2; i++) 
+		        insert(root, rh[i]); 
+		        
+		        cout << "Digite qual projeto quer procurar: ";
+		        cin >> por;
+		        search(root,por)?cout << "Foi entregue !\n"<< endl:
+	                 cout << "Não foi entregue !\n"<< endl;
+	                 system("pause");
+	                 system("CLS");
+				break;
+			}	
+			case 4:{
+				string marketing[] = {"teste3"}; 
+	            int n3 = sizeof(marketing)/sizeof(marketing[0]); 
+	            
+	            struct TrieNode *root3 = getNode(); 
+	            
+	            for (int i = 0; i < n3; i++) 
+		        insert(root, marketing[i]); 
+		        
+		        cout << "Digite qual projeto quer procurar: ";
+		        cin >> por;
+		        search(root,por)?cout << "Foi entregue !\n"<< endl:
+	                 cout << "Não foi entregue !\n"<< endl;
+	                 system("pause");
+	                 system("CLS");
+				break;
+			}	
+			case 5:
+			return 5;				     
+		}
+	}				
+	return 0; 
+} 

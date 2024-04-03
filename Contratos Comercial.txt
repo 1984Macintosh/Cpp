@@ -1,0 +1,14 @@
+Projeto : Otimizacão de rede Wi-Fi do Banco do Brasil
+Contratante : Banco do Brasil
+Funcionário responsavel : Gabriel Barbosa
+Valor do contrato : 15000,00
+
+Projeto : Teste de vunerabilidade do sitema de informações da PMDF
+Contratante : Polícia Militar de Brasília - PMDF
+Funcionário responsavel : Gabriel Barbosa
+Valor do contrato : 20000,00
+
+Projeto : Desenvolvimento web para a loja Construção & Cia
+Contratante : Construção & Cia
+Funcionário responsavel : Gabriel Barbosa
+Valor do contrato : 30000,00
